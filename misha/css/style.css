@@ -1,0 +1,34 @@
+.field {
+	margin: auto;
+	border: 1px dotted black;
+	background-color: green;
+	position: relative;
+}
+
+.rocket {
+	width: 3px;
+	height: 40px;
+	border: 1px solid #c4c4c4;
+	background-color: white;
+	position: absolute;
+	top: 45%;
+}
+
+.player1 {
+	left: 2px;
+}
+
+.player2 {
+	right: 2px;
+}
+
+.ball {
+	border-radius: 15px;
+	width: 15px;
+	height: 15px;
+	border: 1px solid black;
+	background-color: #fff;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
