@@ -29,15 +29,22 @@
 			drawId(markers);
 
 			var marker = markers[0];
+			var marker2 = markers[1];
 
 			var avgPoint = marker.corners.reduce(function(a, b) {
+				return {x: a.x + b.x, y: a.y + b.y};
+			});
+			var avgPoint2 = marker2.corners.reduce(function(a, b) {
 				return {x: a.x + b.x, y: a.y + b.y};
 			});
 
 			avgPoint.x /= marker.corners.length;
 			avgPoint.y /= marker.corners.length;
 
-			dynamic.move(avgPoint.y, avgPoint.x);
+			avgPoint2.x /= marker.corners.length;
+			avgPoint2.y /= marker.corners.length;
+
+			dynamic.move(avgPoint.x, avgPoint.y, avgPoint2.x, avgPoint2.y);
 		}
 	}
 
