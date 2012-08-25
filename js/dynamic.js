@@ -21,16 +21,17 @@ Dynamic = function(height, width) {
 	setInterval(function() {
 		var l = $ball.position().left;
 		var t = $ball.position().top;
-		var t1 = parseInt($('.player1').position().top);
+		var t1 = $('.player1').position().top;
 		var t2 = $('.player2').position().top;
 		var l1 = $('.player1').position().left;
 		var l2 = $('.player2').position().left;
 		// lets check the ball's position
 		if (t >= h-16) moveY = 'up';
 		if (t <= 1) moveY = 'down';
-		if ( (l >= w-16) || ( (l >= l2-10) && (t>t2) && (t<t2+40) ) )
+		if ( (l >= w-16) || ( (l >= l2-16) && (t>=t2) && (t+16<t2+40) ) )
 			moveX = 'right';
-		if ((l <= 1) || ( (l <= l1+10) && (t>t1) && (t<t1+40) ) ) moveX = 'left';
+		if ((l <= 1) || ( (l <= l1+1) && (t>=t1) && (t+16<t1+40) ) ) 
+			moveX = 'left';
 		if (moveY == 'down') {
 			t += speed;
 		} else {
