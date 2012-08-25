@@ -31,4 +31,5 @@
 	position: absolute;
 	left: 20px;
 	top: 20px;
+	transition: left,top linear 30ms;
 }

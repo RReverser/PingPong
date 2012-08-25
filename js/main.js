@@ -3,6 +3,8 @@
 	function tick() {
 		requestAnimationFrame(tick);
 
+		dynamic.check();
+
 		if (video.readyState === video.HAVE_ENOUGH_DATA) {
 			context.drawImage(video, canvas.width, 0, -canvas.width, canvas.height);
 
@@ -27,8 +29,9 @@
 					return {x: a.x + b.x, y: a.y + b.y};
 				});
 
-				avgPoint.x /= marker.corners.length;
-				avgPoint.y /= marker.corners.length;
+				for (var coordName in avgPoint) {
+					avgPoint[coordName] /= marker.corners.length;
+				}
 
 				return avgPoint;
 			});
