@@ -15,7 +15,7 @@ Dynamic = function(height, width) {
 
 	speed = 5;
 	$ball = $('.ball');
-	moveX = 'left';
+	moveX = 'right';
 	moveY = 'down';
 }
 
@@ -26,19 +26,36 @@ Dynamic.prototype.check = function() {
 	var t2 = $('.player2').position().top;
 	var l1 = $('.player1').position().left;
 	var l2 = $('.player2').position().left;
+	// lets check the goal
+	if ((l+16>=w) && (t>75) && (t<225)) {
+		n = parseInt($('.score span').eq(1).html());
+		$('.score span').eq(1).html(n+1);
+		$ball.css({'top':'0px','left':'390px'});
+		moveX = 'left';
+		moveY = 'down';
+		return false;
+	}
+	if ((l<=1) && (t>75) && (t<225)) {
+		n = parseInt($('.score span').eq(0).html());
+		$('.score span').eq(0).html(n+1);
+		$ball.css({'top':'0px','left':'0px'});
+		moveX = 'right';
+		moveY = 'down';
+		return false;
+	}
 	// lets check the ball's position
 	if (t >= h-16) moveY = 'up';
 	if (t <= 1) moveY = 'down';
-	if ( (l >= w-16) || ( (l >= l2-16) && (t>=t2) && (t+16<t2+40) ) )
-		moveX = 'right';
-	if ((l <= 1) || ( (l <= l1+1) && (t>=t1) && (t+16<t1+40) ) ) 
+	if ( (l >= w-16) || ( (l+16 >= l2) && (t>=t2) && (t+16<t2+40) && (l-5<l2) ) )
 		moveX = 'left';
+	if ((l <= 1) || ( (l <= l1+1) && (t>=t1) && (t+16<t1+40) && (l>l1-5) ) ) 
+		moveX = 'right';
 	if (moveY == 'down') {
 		t += speed;
 	} else {
 		t -= speed;
 	}
-	if (moveX == 'left') {
+	if (moveX == 'right') {
 		l += speed;
 	} else {
 		l -= speed;

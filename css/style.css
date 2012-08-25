@@ -33,3 +33,20 @@
 	top: 20px;
 	transition: left,top linear 30ms;
 }
+
+.goal {
+	position: absolute;
+	width: 10px;
+	height: 150px;
+	top: 75px;
+	border: 1px solid black;
+	background-color: #fff;
+}
+
+.left {
+	left: -11px;
+}
+
+.right {
+	right: -11px;
+}
