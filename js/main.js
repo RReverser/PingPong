@@ -1,4 +1,4 @@
-	var video, canvas, context, detector = new AR.Detector(), dynamic;
+	var video, canvas, context, detector = new AR.Detector(), dynamic, knownMarkers = {lastIndex: 0}, markerList = [];
 
 	function tick() {
 		requestAnimationFrame(tick);
@@ -10,7 +10,14 @@
 
 			if (!markers.length) return;
 
-			markers.sort(function(m1, m2) { return m1.id - m2.id });
+			markers.forEach(function(marker) {
+				if (!(marker.id in knownMarkers)) {
+					knownMarkers[marker.id] = knownMarkers.lastIndex++;
+				}
+				markerList[knownMarkers[marker.id]] = marker;
+			});
+
+			markers = markerList.slice();
 
 			drawCorners(markers);
 			drawId(markers);
