@@ -28,8 +28,8 @@ Dynamic = function(height, width) {
 		// lets check the ball's position
 		if (t >= h-16) moveY = 'up';
 		if (t <= 1) moveY = 'down';
-		if ( (l >= w-16) || ( (l <= l2-10) && (t>t2) && (t<t2+40) )
-			)) moveX = 'right';
+		if ( (l >= w-16) || ( (l >= l2-10) && (t>t2) && (t<t2+40) ) )
+			moveX = 'right';
 		if ((l <= 1) || ( (l <= l1+10) && (t>t1) && (t<t1+40) ) ) moveX = 'left';
 		if (moveY == 'down') {
 			t += speed;
@@ -46,11 +46,16 @@ Dynamic = function(height, width) {
 	}, 10);
 }
 
-Dynamic.prototype.move = function(_y1, _x1, _y2, _x2) {
-		var top1 = _x1-15;
-		var top2 = _x2-15;
-		var left1 = _y1-2;
-		var left2 = _y2-2;
+Dynamic.prototype.move = function(p1, p2) {
+	if (p1) {
+		var top1 = p1.y - 15;
+		var left1 = p1.x - 2;
 		$('.player1').stop().animate({'top':top1+'px','left':left1+'px'}, 400);
+	}
+		
+	if (p2) {
+		var top2 = p2.y - 15;
+		var left2 = p2.x - 2;
 		$('.player2').stop().animate({'top':top2+'px','left':left2+'px'}, 400);
+	}
 }
