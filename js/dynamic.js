@@ -64,16 +64,26 @@ Dynamic.prototype.check = function() {
 	$ball.css({'top':t+'px','left':l+'px'});
 }
 
-Dynamic.prototype.move = function(p1, p2) {
-	if (p1) {
-		var top1 = p1.y - 15;
-		var left1 = p1.x - 2;
-		$('.player1').stop().animate({'top':top1+'px','left':left1+'px'}, 200);
+Dynamic.prototype.move = function(p11, p12, p21, p22) {
+	function vectorLength(vector) {
+		return Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+	}
+
+	function vectorAngle(vector) {
+		var angle = Math.asin(vector.y / vectorLength(vector)) / Math.PI * 180;
+		if (vector.x < 0) angle = 180 - angle;
+		return angle;
+	}
+
+	if (p11) {
+		var top1 = p11.y - 15;
+		var left1 = p11.x - 2;
+		$('.player1').stop().animate({'top':top1+'px','left':left1+'px', 'rotate':vectorAngle({x: p12.x - p11.x, y: p12.y - p11.y})+'deg'}, 200);
 	}
 		
-	if (p2) {
-		var top2 = p2.y - 15;
-		var left2 = p2.x - 2;
-		$('.player2').stop().animate({'top':top2+'px','left':left2+'px'}, 200);
+	if (p21) {
+		var top2 = p21.y - 15;
+		var left2 = p21.x - 2;
+		$('.player2').stop().animate({'top':top2+'px','left':left2+'px', 'rotate':vectorAngle({x: p22.x - p21.x, y: p22.y - p21.y})+'deg'}, 200);
 	}
 }

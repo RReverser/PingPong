@@ -3,7 +3,9 @@
 	function tick() {
 		requestAnimationFrame(tick);
 
-		dynamic.check();
+		if (knownMarkers.lastIndex >= 2) {
+			dynamic.check();
+		}
 
 		if (video.readyState === video.HAVE_ENOUGH_DATA) {
 			context.drawImage(video, canvas.width, 0, -canvas.width, canvas.height);
@@ -23,7 +25,7 @@
 
 			drawCorners(markers);
 			drawId(markers);
-
+/*
 			var avgPoints = markers.map(function(marker) {
 				var avgPoint = marker.corners.reduce(function(a, b) {
 					return {x: a.x + b.x, y: a.y + b.y};
@@ -35,8 +37,10 @@
 
 				return avgPoint;
 			});
+*/
 
-			dynamic.move.apply(dynamic, avgPoints);
+			var points = Array.prototype.concat.apply([], markers.map(function(marker) { return marker ? marker.corners.slice(0, 2) : [null, null] }));
+			dynamic.move.apply(dynamic, points);
 		}
 	}
 
