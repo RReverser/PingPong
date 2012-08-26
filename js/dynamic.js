@@ -52,7 +52,9 @@ Dynamic.prototype.check = function() {
 		var c1 = t1-k1*l1;
 		var r1 = Math.abs((t)+(-k1*l)-c1)/Math.sqrt(Math.pow(k1,2)+1);
 		an1 = an1/180*Math.PI;
-		if (Math.abs(r1) <= 4) angle = -angle+an1;
+		if (Math.abs(r1) <= 4) {
+			angle = -angle+an1;
+		}
 	}
 	if ((t>t2-10) && (t<t2+40)) {
 		var an2 = 90-parseFloat( $('.player2').rotate() );
@@ -60,7 +62,9 @@ Dynamic.prototype.check = function() {
 		var c2 = t2-k2*l2;
 		var r2 = Math.abs((t)+(-k2*l)-c2)/Math.sqrt(Math.pow(k2,2)+1);
 		an2 = an2/180*Math.PI;
-		if (Math.abs(r2) <= 4) angle = -angle+an2;
+		if (Math.abs(r2) <= 4) {
+			angle = -angle+an2;
+		}
 	}
 
 	t -= speed*Math.sin(angle);
