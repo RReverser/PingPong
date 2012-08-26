@@ -1,12 +1,12 @@
 .field {
 	margin: auto;
 	border: 1px dotted black;
-	background-color: green;
 	position: relative;
+	background: green url(../img/field.jpg) 0 0;
 }
 
 .rocket {
-	width: 3px;
+	width: 5px;
 	height: 40px;
 	border: 1px solid #c4c4c4;
 	background-color: white;
@@ -16,10 +16,12 @@
 
 .player1 {
 	left: 2px;
+	background-color: blue;
 }
 
 .player2 {
 	right: 2px;
+	background-color: red;
 }
 
 .ball {
