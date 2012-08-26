@@ -14,11 +14,13 @@ Dynamic = function(height, width) {
 	$('div.field').css({'width':w,'height':h});	
 
 	speed = 5;	
-	angle = 0;//-Math.PI/2.5;
+	angle = -Math.PI/3;
 	$ball = $('.ball');
+	do_check = true;
 }
 
 Dynamic.prototype.check = function() {
+	if (!do_check) { do_check = true; speed -= 20; return false; }
 	var l = $ball.position().left;
 	var t = $ball.position().top;
 	var t1 = $('.player1').position().top;
@@ -40,30 +42,34 @@ Dynamic.prototype.check = function() {
 		angle = -Math.PI/4;
 		return false;
 	}
-	if ( ((l+15>=w)||(l<=1)) && ( (t<75)||(t>255) )) {
+	if ( ((l+15>=w)||(l<=1)) && ( (t<75)||(t>225) )) {
 		angle = Math.PI-angle;		
 	}
 	
 	if ((t >= h-16) || (t <= 1)) angle = -angle;
 	
-	if ((t>t1-10) && (t<t1+40)) {
+	if ((t>t1-10) && (t<t1+40) && (l<l1+40) && (l>l1-40)) {
 		var an1 = 90-parseFloat( $('.player1').rotate() );
 		var k1 = Math.tan(-an1*Math.PI/180);
 		var c1 = t1-k1*l1;
 		var r1 = Math.abs((t)+(-k1*l)-c1)/Math.sqrt(Math.pow(k1,2)+1);
 		an1 = an1/180*Math.PI;
 		if (Math.abs(r1) <= 4) {
-			angle = -angle+an1;
+			angle = Math.PI-angle+an1;
+			do_check = false;
+			speed += 20;
 		}
 	}
-	if ((t>t2-10) && (t<t2+40)) {
+	if ((t>t2-10) && (t<t2+40) && (l<l2+40) && (l>l2-40)) {
 		var an2 = 90-parseFloat( $('.player2').rotate() );
 		var k2 = Math.tan(-an2*Math.PI/180);
 		var c2 = t2-k2*l2;
 		var r2 = Math.abs((t)+(-k2*l)-c2)/Math.sqrt(Math.pow(k2,2)+1);
 		an2 = an2/180*Math.PI;
 		if (Math.abs(r2) <= 4) {
-			angle = -angle+an2;
+			angle = Math.PI-angle+an2;
+			do_check = false;
+			speed += 20;
 		}
 	}
 
