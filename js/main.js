@@ -58,8 +58,7 @@
 
 		context = canvas.getContext('2d');
 
-		//dynamic = new Dynamic(canvas.height, canvas.width);
-
+		dynamic = new Dynamic({width: canvas.width, height: canvas.height});
 
 		navigator.getUserMedia({video: true}, function (stream) {
 			video.src = window.webkitURL ? window.webkitURL.createObjectURL(stream) : stream;

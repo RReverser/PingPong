@@ -1,4 +1,4 @@
-.field {
+#field {
 	margin: auto;
 	border: 1px dotted black;
 	position: relative;
@@ -6,7 +6,7 @@
 	border-radius: 6px;
 }
 
-.rocket {
+.player {
 	width: 5px;
 	height: 40px;
 	border: 1px solid #c4c4c4;
@@ -16,17 +16,17 @@
 	box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 
-.player1 {
+#player1 {
 	left: 4px;
 	background-color: blue;
 }
 
-.player2 {
+#player2 {
 	right: 4px;
 	background-color: red;
 }
 
-.ball {
+#ball {
 	border-radius: 15px;
 	width: 15px;
 	height: 15px;
@@ -34,7 +34,6 @@
 	position: absolute;
 	left: 20px;
 	top: 20px;
-	transition: left,top linear 30ms;
 	box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 
@@ -48,22 +47,22 @@
 	display: none;
 }
 
-.left {
+#goalLeft {
 	left: -11px;
 }
 
-.right {
+#goalRight {
 	right: -11px;
 }
 
-.score {
+#scoreWrapper {
 	font-family: "Comic Sans MS";
 	font-weight: bold;
 	font-size: 20px;
 	margin-bottom: 2px;
 }
 
-.score span {
+.score {
 	display: inline-block;
 	border-radius: 3px;
 	width: 30px;
@@ -71,10 +70,10 @@
 	color: white;
 }
 
-.score span:first-child {
+#score1 {
 	background-color: blue;
 }
 
-.score span:last-child {
+#score2 {
 	background-color: red;
 }
