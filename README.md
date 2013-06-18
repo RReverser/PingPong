@@ -1,4 +1,4 @@
-pingpong
+PingPong
 ========
 
 DOU Hackathon Lviv project by me and @mikach - ping-pong made in pure JavaScript using Augmented Reality for game control.
